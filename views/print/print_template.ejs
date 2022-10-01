@@ -1,0 +1,138 @@
+<style>
+    .divprint {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        /* font-size: 25px; 6 99 05 45 08 */
+    }
+
+    .divprint th {
+        font-weight: inherit;
+        padding: 5px;
+    }
+
+    @media print {
+        .divprint h3 {
+            background-color: #4068a3 !important;
+            -webkit-print-color-adjust: exact; 
+        }
+    }
+
+    @media print {
+        .divprint table {
+            background-color: #78ae61 !important;
+            -webkit-print-color-adjust: exact; 
+        }
+    }
+
+    @media print {
+        .divprint .decisionok {
+            background-color: #33b689 !important;
+            -webkit-print-color-adjust: exact; 
+        }
+    }
+
+    @media print {
+        .divprint .decisionko {
+            background-color: #f44336 !important;
+            -webkit-print-color-adjust: exact; 
+        }
+    }
+
+    @media print {
+        .divprint .decisionpending {
+            background-color: #4068a3 !important;
+            -webkit-print-color-adjust: exact; 
+        }
+    }
+</style>
+<section class="divprint">
+    <div style="display: flex;width: 100%;justify-content: center;align-items: center;margin-top: 2rem;">
+        <div style="width: 48%;display: flex;justify-content: center;">
+            <img src="https://universcity.smartcodegroup.com/_nuxt/img/UniversCity-logo-2-png.0a9d92c.png" alt="">
+        </div>
+        <div style="width: 4%;display: flex;justify-content: center;">
+            <p style="font-size: 25px;font-weight: bold;font-family: sans-serif;">&</p>
+        </div>
+        <div style="width: 48%;display: flex;justify-content: center;">
+            <img src="https://admin.universcitiz.com/<%= user.logo_ecole %>" alt="">
+        </div>
+    </div>
+    <div style="display: flex;justify-content: center;text-align: center;">
+        <h3
+            style="text-align: center;margin-top: 2rem;font-weight: inherit;background: #4068a3;width: 60%;color: white;padding: 0.5rem;border-radius: 10px;box-shadow: 1px 4px 5px grey;">
+            Candidature de l'étudiant: <span style="font-weight: bold;">
+                <%= cand.user_id.name %>
+                    <%= cand.user_id.prenom_eleve %>
+            </span></h3>
+    </div>
+    <div style="display: flex;justify-content: center;text-align: center;margin-top: 2rem;">
+        <p style="text-align: center;width: 65%;">
+            Le présent document attestant de la reception de la présente candidature, Le présent document attestant de
+            la
+            reception de la présente candidature, Le présent document attestant de la reception de la présente
+            candidature,
+            Le présent document attestant de la reception de la présente candidature, dont les informations sont les
+            suivantes:
+        </p>
+    </div>
+    <div style="display: flex;justify-content: center;text-align: center;margin-top: 1rem;">
+        <table style="text-align: center;width: 65%;background: #78ae61;box-shadow: 1px 4px 5px grey;color: white;">
+            <thead>
+                <tr>
+                    <th style="border-right: 1px solid white;">Etudiant:</th>
+                    <th style="font-weight: bold;">
+                        <%= cand.user_id.name %>
+                            <%= cand.user_id.prenom_eleve %>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="border-top: 1px solid white;border-right: 1px solid white;">Email du candidat:</th>
+                    <th style="border-top: 1px solid white;font-weight: bold;">
+                        <%= cand.user_id.email %>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="border-top: 1px solid white;border-right: 1px solid white;">Message du candidat:</th>
+                    <th style="border-top: 1px solid white;font-weight: bold;">
+                        <%- cand.comment %>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="border-top: 1px solid white;border-right: 1px solid white;">Ecole:</th>
+                    <th style="border-top: 1px solid white;font-weight: bold;">
+                        <%= user.nom_ecole %>
+                    </th>
+                </tr>
+                <tr>
+                    <th style="border-top: 1px solid white;border-right: 1px solid white;">Formation:</th>
+                    <th style="border-top: 1px solid white;font-weight: bold;">
+                        <%= cand.formation_id.nom %>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div style="display: flex;justify-content: center;text-align: center;margin-top: 3rem;">
+        <p style="font-weight:bold;">
+            Etat de la candidature: &nbsp;&nbsp;
+            <% if(cand.statut=="Candidature acceptée" ){ %>
+                <p
+                    class="decisionok"
+                    style="background: #33b689;color: white;padding: 5px;border-radius: 20px;text-align: center;text-align: center;position: relative;bottom: 6px;">
+                    <%= cand.statut %> &nbsp;<span class="fa fa-check"></span>
+                </p>
+                <% }else if(cand.statut=="Candidature refusée" ){ %>
+                    <p
+                        class="decisionko"
+                        style="background: #f44336;color: white;padding: 5px;border-radius: 20px;text-align: center;text-align: center;position: relative;bottom: 6px;">
+                        <%= cand.statut %> &nbsp;<span class="fa fa-times"></span>
+                    </p>
+                    <% }else{ %>
+                        <p
+                            class="decisionpending"
+                            style="background: #4068a3;color: white;padding: 5px;border-radius: 20px;text-align: center;text-align: center;position: relative;bottom: 6px;">
+                            <%= cand.statut %>
+                        </p>
+                        <% } %>
+        </p>
+    </div>
+</section>

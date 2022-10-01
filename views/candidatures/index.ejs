@@ -1,0 +1,231 @@
+<%- include('../partials/header') -%> 
+<style>
+    .avatarimg{
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        object-fit: cover;
+    }
+    div.dataTables_scrollBody table tbody tr:first-child th, div.dataTables_scrollBody table tbody tr:first-child td {
+        border-top: 0;
+        text-align: center;
+    }
+    .table thead tr th {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+    }
+    .statuu-pending{
+        margin: 0;
+        background: #4068a3;
+        color: white;
+        padding: 2px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    .statuu-ok{
+        margin: 0;
+        background: #33b689;
+        color: white;
+        padding: 2px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    .statuu-ko{
+        margin: 0;
+        background: #f44336;
+        color: white;
+        padding: 2px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    .addavis {
+        background-image: linear-gradient(to right, #212529, #212529, #03a9f3, #212529);
+        -webkit-box-shadow: 0 4px 15px 0 rgb(252 104 110 / 75%);
+        -moz-box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+        -ms-box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+        box-shadow: 0 0px 5px 0 #212529;
+    }
+    .btn-hover.color-77 {
+        background-image: linear-gradient(to right, #4068a3, #4068a3, #4068a3, #4068a3);
+        -webkit-box-shadow: 0 4px 15px 0 rgb(45 54 65 / 75%);
+        -moz-box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+        -ms-box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+        box-shadow: 0 4px 15px 0 rgb(45 54 65 / 75%);
+    }
+    .changestatus{
+        cursor: pointer;
+    }
+    .changestatus:hover{
+        cursor: pointer;
+        background-color: #4068a3;
+        color: white;
+    }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="margin-top: 4rem;">
+                    <div class="header">
+                        <h3 class="text-white mb-0" style="color: #000 !important;">Liste des candidatures</h3>
+                        <h5 style="margin-top: 1rem;"><%= users.length %> Candidature(s)</h5>
+                        <div class="header-dropdown m-r--5">
+                            <button style="margin-top:0px;" class="btn-hover btn-border-radius color-77" onclick="window.location='/dashboard/reponsemail'">Réponses mails</button>
+                            <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5" onclick="window.location='/dashboard/candidatures/add'">Ajouter</button>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table  id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Utilisateur</th>
+                                        <th>Formation</th>
+                                        <th>Statut</th>
+                                        <th>Pièce jointe</th>
+                                        <th>Crée le</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach((user)=>{ %>
+                                    <tr>
+                                        <td><%= user.nom %></td>
+                                        <td><%= user.user_id.name %></td>
+                                        <td><%= user.formation_id.nom %></td>
+                                        <td>
+                                            <% if(user.statut == "Candidature acceptée"){ %>
+                                                <p class="statuu-ok">
+                                                    <%= user.statut %> &nbsp;<span class="fa fa-check"></span>
+                                                </p>
+                                            <% }else if(user.statut == "Candidature refusée"){ %>
+                                                <p class="statuu-ko">
+                                                    <%= user.statut %> &nbsp;<span class="fa fa-times"></span>
+                                                </p>
+                                            <% }else{ %>
+                                                <p class="statuu-pending">
+                                                    <%= user.statut %>
+                                                </p>
+                                            <% } %>
+                                        </td>
+                                        <td>
+                                            <a href="<%= user.fichier %>" target="_blank" title="Voir la pièce"> Voir le fichier<i class="material-icons" style="font-size:15px;position: relative;top: 3px;">remove_red_eye</i></a>
+                                        </td>
+                                        <td><%= user.createdAt.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ") %></td>
+                                        <td style="display: flex;">
+                                            <!-- <a href="/user/details/<%= user.id %>" class="btn btn-tbl-edit"><i class="fa fa-eye"></i> View</a> -->
+                                            <a href="/dashboard/candidatures/edit/<%= user.id %>" class="btn btn-tbl-edit" title="Modifier">
+                                                <i class="material-icons">create</i>
+                                            </a>
+                                            <a href="/edit/<%= user.id %>" attr-id="<%= user.id %>" class="btn btn-tbl-edit btn-primary print_candidature">
+                                                <i class="material-icons">print</i>
+                                            </a>
+                                            <div class="dropdown">
+                                                <a href="#" onClick="return false;" class="btn btn-tbl-edit dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="material-icons">check_circle</i>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                    <button class="dropdown-item changestatus" type="button" attr-id="<%= user.id %>" attr-value="Demande interview">Demande d'interview</button>
+                                                    <button class="dropdown-item changestatus" type="button" attr-id="<%= user.id %>" attr-value="Candidature acceptée">Accepter la candidature</button>
+                                                    <button class="dropdown-item changestatus" type="button" attr-id="<%= user.id %>" attr-value="Candidature refusée">Refuser la candidature</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }) %> 
+                                </tbody>
+                            </table>
+                            <div class="modal fade bd-example-modal-lg" id="modalprint" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="DivIdToPrint">
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn-hover btn-border-radius addavis" data-dismiss="modal"
+                                                style="margin-top: 3px;">Fermer</button>
+                                            <button style="margin-top:0px;display: flex;justify-content: space-evenly;align-items: center;" class="btn-hover btn-border-radius color-5" onclick='printDiv();' attr-type="save" attr-unit="description_avis0">Imprimer <i class="material-icons">print</i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade bd-example-modal-lg" id="modalrelecturemail" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Relisez votre email et/ou ajouter une pièce jointe</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" id="load_email_data">
+                                            <form class="add_pj_send_email">
+                                                <div class="row" style="margin: 2rem;">
+                                                    <input type="hidden" name="to" class="to_email">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="">Sujet</label>
+                                                            <input type="text" class="form-control sujet_email" name="sujet">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="">Contenu</label>
+                                                            <textarea class="form-control contenu_email" id="contenu_email"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="">Pièce jointe</label>
+                                                            <input type="file" class="form-control" name="piece_jointe">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn-hover btn-border-radius addavis" data-dismiss="modal"
+                                                style="margin-top: 3px;">Fermer</button>
+                                            <button style="margin-top:0px;display: flex;justify-content: space-evenly;align-items: center;" class="btn-hover btn-border-radius color-5 send_verified_email">Envoyer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
+<script>
+    function printDiv() 
+    {
+
+        var divToPrint=document.getElementById('DivIdToPrint');
+
+        var newWin=window.open('','Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function(){newWin.close();},10);
+
+    }
+</script>
+<%- include('../partials/footer') -%> 

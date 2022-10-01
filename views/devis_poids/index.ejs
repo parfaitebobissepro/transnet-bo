@@ -1,0 +1,62 @@
+<%- include('../partials/header') -%> 
+<style>
+    .avatarimg{
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        object-fit: cover;
+    }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="margin-top: 4rem;">
+                    <div class="header">
+                        <h3 class="text-white mb-0" style="color: #000 !important;">Liste des devis poids</h3>
+                        <div class="header-dropdown m-r--5">
+                            <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5" onclick="window.location='/dashboard/devis/poids/add'">Ajouter</button>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table  id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Debut poids</th>
+                                        <th>Fin poids</th>
+                                        <th>Prix</th>
+                                        <th>Crée le</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% devis.forEach((user)=>{ %>
+                                    <tr>
+                                        <td><%= user.debut_poids %></td>
+                                        <td><%= user.fin_poids %></td>
+                                        <td><%= user.prix %></td>
+                                        <td><%= user.createdAt.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ") %></td>
+                                        <td>
+                                            <a href="#" class="btn btn-tbl-edit btn-primary delete_devis_poids" attr-id="<%= user.id %>" title="Supprimer">
+                                                <i class="material-icons">delete_sweep</i>
+                                            </a>
+                                            <a href="/dashboard/devis/poids/edit/<%= user.id %>" class="btn btn-tbl-edit" title="Modifier">
+                                                <i class="material-icons">create</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% }) %> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
+
+<%- include('../partials/footer') -%> 

@@ -1,0 +1,122 @@
+{
+  level: 'warn',
+  message: 'Run "npm install apidoc -g" and then run "apidoc -e node_modules/" at your terminal',
+  log: [Error: ENOENT: no such file or directory, access './doc/api_data.json'] {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'access',
+    path: './doc/api_data.json'
+  },
+  timestamp: '2021-01-25T09:48:14.858Z'
+}
+{
+  level: 'warn',
+  message: 'Run "npm install apidoc -g" and then run "apidoc -e node_modules/" at your terminal',
+  log: [Error: ENOENT: no such file or directory, access './doc/api_data.json'] {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'access',
+    path: './doc/api_data.json'
+  },
+  timestamp: '2021-01-25T09:49:41.494Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-25T10:10:39.861Z'
+}
+{
+  level: 'info',
+  message: 'method type not matched',
+  timestamp: '2021-01-26T09:48:06.080Z'
+}
+{
+  level: 'info',
+  message: 'method type not matched',
+  timestamp: '2021-01-26T11:13:20.966Z'
+}
+{
+  level: 'info',
+  message: 'method type not matched',
+  timestamp: '2021-01-26T11:13:30.649Z'
+}
+{
+  level: 'info',
+  message: 'method type not matched',
+  timestamp: '2021-01-26T11:13:30.660Z'
+}
+{
+  level: 'info',
+  message: 'method type not matched',
+  timestamp: '2021-01-26T11:13:30.661Z'
+}
+{
+  level: 'info',
+  message: 'method type not matched',
+  timestamp: '2021-01-26T11:13:30.667Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:13:31.074Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:13.086Z'
+}
+{
+  level: 'error',
+  log: 'PUT request error',
+  timestamp: '2021-01-26T11:15:13.095Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:13.100Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:18.429Z'
+}
+{
+  level: 'error',
+  log: 'PUT request error',
+  timestamp: '2021-01-26T11:15:18.436Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:18.438Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:27.067Z'
+}
+{
+  level: 'error',
+  log: 'PUT request error',
+  timestamp: '2021-01-26T11:15:27.084Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:27.094Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:39.714Z'
+}
+{
+  level: 'error',
+  log: 'PUT request error',
+  timestamp: '2021-01-26T11:15:39.717Z'
+}
+{
+  level: 'error',
+  log: 'POST request error',
+  timestamp: '2021-01-26T11:15:39.719Z'
+}

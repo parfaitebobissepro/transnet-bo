@@ -1,0 +1,118 @@
+<%-include('../partials/header')-%> 
+    <style>
+        .info-box7-a>div{
+            transition: transform .3s ease-out;
+        }
+        .info-box7-a>div:hover{
+            transform: translate(0, -5px);
+        }
+        #amChartLineHome1, #amChartLineHome2 {
+            width: 100%;
+            height: 300px;
+        }
+    </style>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ul class="breadcrumb breadcrumb-style">
+                            <li class="breadcrumb-item 	bcrumb-1">
+                                <a href="index.html">
+                                    <i class="material-icons">home</i>
+                                    Home</a>
+                            </li>
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets -->
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <a href="dashboard/clients" class="info-box7-a">
+                        <div class="info-box7 l-bg-orange order-info-box7">
+                            <div class="info-box7-block">
+                                <h4 class="m-b-20">Clients</h4>
+                                <h2 class="text-right"><i class="material-icons pull-left">account_balance</i><span>
+                                    <%= nbre_eleve %>
+                                </span></h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <a href="dashboard/transporteurs" class="info-box7-a">
+                        <div class="info-box7 l-bg-cyan order-info-box7">
+                            <div class="info-box7-block">
+                                <h4 class="m-b-20">Transporteurs</h4>
+                                <h2 class="text-right"><i class="material-icons pull-left">person</i><span>
+                                    <%= nbre_ecole %>
+                                </span></h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <a href="dashboard/demandes" class="info-box7-a">
+                        <div class="info-box7 l-bg-purple order-info-box7">
+                            <div class="info-box7-block">
+                                <h4 class="m-b-20">Demandes</h4>
+                                <h2 class="text-right"><i class="material-icons pull-left">school</i><span><%= nbre_demande %></span></h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <a href="dashboard/commandes" class="info-box7-a">
+                        <div class="info-box7 l-bg-green order-info-box7">
+                            <div class="info-box7-block">
+                                <h4 class="m-b-20">Paiement</h4>
+                                <h2 class="text-right"><i class="fas fa-dollar-sign pull-left"></i><span><%= nbre_cmd %></span></h2>
+                            </div>
+                        </div>
+                    </a>    
+                </div>
+            </div>
+            <!-- #END# Widgets -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>Evolution</strong> des inscriptions des utilisateurs</h2>
+                        </div>
+                        <div class="body">
+                            <div id="amChartLineHome1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                <strong>Evolution</strong> des inscriptions des transporteurs</h2>
+                        </div>
+                        <div class="body">
+                            <div id="amChartLineHome2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                        </div>
+                        <div class="body">
+                            <div id="echart_pie_ecole_etudiant" class="chartsh chart-shadow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+<%-include('../partials/footer')-%> 

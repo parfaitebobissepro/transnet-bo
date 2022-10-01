@@ -1,0 +1,87 @@
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter<%= avis.id %>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Ajouter un avis</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="avissave">
+                    <input type="hidden" name="id_avis" value="<%= avis.id %>">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nom client *</label>
+                                <input type="text" class="form-control" placeholder="Nom client" name="nom_avis" value="<%= avis.nom_avis %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nom client (en anglais) *</label>
+                                <input type="text" class="form-control" placeholder="Nom client" name="nom_avis_en" value="<%= avis.nom_avis_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre client *</label>
+                                <input type="text" class="form-control" placeholder="Titre client" name="title_avis" value="<%= avis.title_avis %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre client (en anglais) *</label>
+                                <input type="text" class="form-control" placeholder="Titre client" name="title_avis_en" value="<%= avis.title_avis_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Ville et pays du client *</label>
+                                <input type="text" class="form-control" placeholder="Paris, France" name="ville_pays_avis" value="<%= avis.ville_pays_avis %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Ville et pays du client (en anglais) *</label>
+                                <input type="text" class="form-control" placeholder="Paris, France" name="ville_pays_avis_en" value="<%= avis.ville_pays_avis_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Photo client *</label>
+                                <input type="file" class="form-control" name="image_avis"><br>
+                                <img src="<%= avis.image_avis %>" alt="<%= avis.title_avis %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Message client *</label>
+                                <textarea class="form-control description_avis<%= avis.id %>" id="description_avis<%= avis.id %>"
+                                    placeholder="Message client">
+                                    <%= avis.message_avis %>
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Message client (en anglais) *</label>
+                                <textarea class="form-control description_avis<%= avis.id %>_en" id="description_avis<%= avis.id %>_en"
+                                    placeholder="Message client">
+                                    <%= avis.message_avis_en %>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-hover btn-border-radius addavis" data-dismiss="modal"
+                    style="margin-top: 3px;">Fermer</button>
+                <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5 save_avis" attr-type="save"
+                    attr-unit="description_avis<%= avis.id %>" attr-unit1="description_avis0<%= avis.id %>_en">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>

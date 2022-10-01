@@ -1,0 +1,237 @@
+<%-include('../partials/header')-%> 
+<style>
+    .formationsave{
+        width: 100%;
+    }
+    input[type=text], input[type=email]{
+      border: 1px solid #0f3042 !important;
+      border-radius: 5px !important;
+      background: transparent !important;
+      padding: 0px 7px !important;
+    }
+    input[type=text]:focus, input[type=email]:focus{
+      border: 1px solid #78ae61 !important;
+      -webkit-box-shadow: 0 1px 0 0 #78ae61 !important;
+      box-shadow: 0 1px 0 0 #78ae61 !important;
+    }
+    .form-group .form-control{
+        width: 97% !important;
+    }
+    .eleve_form, .ecole_form{
+        display: none;
+        margin-top: 1rem;
+    }
+    .usertype_selector h3{
+        text-align: center;
+    }
+    .usertype_selector{
+        border: 1px #4169a3 solid;
+        color: black;
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        border-radius: 15px;
+    }
+    .usertype_selector.active{
+        border: 1px #4169a3 solid;
+        color: white;
+        background-color: #4169a3;
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        border-radius: 15px;
+    }
+    .usertype_selector:hover{
+        border: 1px #4169a3 solid;
+        color: white;
+        background-color: #4169a3;
+        -webkit-transition: background-color 400ms linear;
+        -ms-transition: background-color 400ms linear;
+        transition: background-color 400ms linear;
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    .divselectorentoure{
+        padding: 1rem;
+    }
+    .addinguser hr{
+        width: 100%;
+        margin-bottom: 2rem;
+        border-top: 2px solid rgb(64 104 163);
+    }
+    .ms-choice>span {
+        position: absolute;
+        top: 0px;
+    }
+    .languesa{
+        padding: 0;
+    }
+</style>
+<section class="content addinguser">
+    <div class="container-fluid">
+        <div class="content" style="padding-top:30px;">
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <div class="header">
+                                <h2>
+                                    <strong>Ajouter</strong> une formation
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <div class="row">
+                                    <form class="formationsave">
+                                        <input type="hidden" name="id_formation" value="<%= formation._id %>">
+                                        <div class="row" style="margin: 0.1rem;">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="">Nom de la formation *</label>
+                                                    <input type="text" class="form-control" placeholder="Nom de la formation" name="nom" value="<%= formation.nom %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="">Nom de la formation (en anglais) *</label>
+                                                    <input type="text" class="form-control" placeholder="Nom de la formation" name="nom_en" value="<%= formation.nom_en %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Ecole *</label>
+                                                    <select class="form-control" name="user_id">
+                                                        <% user.forEach((item)=>{ %>
+                                                            <option value="<%= item._id %>" <%= item._id == formation.user_id._id.toString() ? "selected":"" %>><%= item.name %></option>
+                                                        <% }) %> 
+                                                    </select>   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Description de la Formation *</label>
+                                                <textarea class="form-control description_formation" id="description_formation" placeholder="Description de la Formation">
+                                                    <%= formation.description %>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Description de la Formation (en anglais) *</label>
+                                                <textarea class="form-control description_formation_en" id="description_formation_en" placeholder="Description de la Formation">
+                                                    <%= formation.description_en %>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding: 2rem;">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Domaine de la formation *</label>
+                                                    <select class="form-control" name="domaine">
+                                                        <% domaines.forEach((domaine)=>{ %>
+                                                            <option value="<%= domaine._id %>" <%= formation.domaine._id == domaine._id.toString() ? 'selected' : '' %>><%= domaine.name %></option>
+                                                        <% }) %> 
+                                                    </select>   
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Langues de la formation * </label>
+                                                    <select class="form-control languesa" name="langues[]" multiple="multiple">
+                                                        <% lang.forEach((langue)=>{ %>
+                                                            <option value="<%= langue._id %>" <% formation.langues.forEach((language)=>{ %><%= language._id.toString() == langue._id ? 'selected' : '' %><% }) %>><%= langue.nom %></option>
+                                                        <% }) %> 
+                                                    </select>   
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Campus 1</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Pays</label>
+                                                    <select class="selectpicker countrypicker countrypickerpayscampus1" data-default="<%= formation.campus1.split('|')[1] %>" data-flag="true"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Ville</label>
+                                                    <input type="text" class="form-control villecampus1" placeholder="Ville campus 1" value="<%= formation.campus1.split('|||')[1] %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Campus 2</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Pays</label>
+                                                    <select class="selectpicker countrypicker countrypickerpayscampus2" data-default="<%= formation.campus2.split('|')[1] %>" data-flag="true"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Ville</label>
+                                                    <input type="text" class="form-control villecampus2" placeholder="Ville campus 2" value="<%= formation.campus2.split('|||')[1] %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <h5>Coût et date limite</h5>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Coût de la formation </label>
+                                                    <input type="text" class="form-control villecampus2" placeholder="Coût de la formation" name="cout" value="<%= formation.cout %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">Frais de dossier </label>
+                                                    <input type="text" class="form-control villecampus2" placeholder="Frais de dossier" name="frais_dossier">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="">En vedette ? </label>
+                                                    <div class="switch" style="margin-top: 8px;">
+                                                        <label>Non
+                                                            <input type="checkbox" name="en_vedette" <%= formation.en_vedette == "on" ? "checked" : "" %>>
+                                                            <span class="lever"></span>Oui</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Date limite de soumission</label>
+                                                    <input type="text" class="form-control datepicker" placeholder="Date limite de soumission" name="date_limite" value="<%= formation.date_limite %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="">Date de rentrée scolaire</label>
+                                                    <input type="text" class="form-control datepicker" placeholder="Date de rentrée scolaire" name="rentree_scolaire" value="<%= formation.rentree_scolaire %>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="display: flex;justify-content: center;">
+                                            <button class="btn-hover btn-border-radius color-7 submit_formation" attr-type="save">Sauvegarder</button>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%-include('../partials/footer')-%> 

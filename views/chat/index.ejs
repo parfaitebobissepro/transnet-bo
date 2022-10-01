@@ -1,0 +1,254 @@
+<%- include('../partials/header') -%> 
+<style>
+  .people-list .chat-list li {
+    padding: 10px 15px;
+    list-style: none;
+    display: flex;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    /* justify-content: space-between; */
+    align-items: center;
+  }
+  .people-list .chat-list img {
+    width: 45px;
+    height: 45px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    object-fit: contain;
+  }
+  .chat .chat-header img {
+    float: left;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border: 1px solid #cbcdc8;
+  }
+  .chat .chat-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    border-radius: 0 0.55rem 0 0;
+    display: flex;
+    align-items: center;
+  }
+  .chat-message input[type=text], input[type=email], textarea{
+    border: 1px solid #0f3042 !important;
+    border-radius: 5px !important;
+    background: transparent !important;
+    padding: 0px 7px !important;
+  }
+  .chat-message input[type=text]:focus, input[type=email]:focus, textarea:focus{
+    border: 1px solid #78ae61 !important;
+    -webkit-box-shadow: 0 1px 0 0 #78ae61 !important;
+    box-shadow: 0 1px 0 0 #78ae61 !important;
+  }
+  .chat-message .form-group .form-control{
+      width: 97% !important;
+  }
+</style>
+<section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ul class="breadcrumb breadcrumb-style ">
+              <li class="breadcrumb-item">
+                <h4 class="page-title">Messagerie</h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+          <div class="card">
+            <div class="body">
+              <div id="plist" class="people-list">
+                <div class="form-line m-b-15">
+                  <input
+                    type="text"
+                    class="form-control search_discuss"
+                    placeholder="Rechercher..."
+                  />
+                </div>
+                <div
+                  class="tab-content"
+                  style="    max-height: 430px;
+    overflow-y: scroll;"
+                >
+                  <div id="chat_user">
+                    <ul class="chat-list list-unstyled m-b-0">
+                        <% chatconvers.forEach((chat,index)=>{ %>
+                            <% if(chat.emetteur._id == admin.toString()){ %>
+                                <li class="clearfix chatonglet <%= index == 0 ? 'active' : ''  %>" attr-onglet="<%= chat._id %>" attr-destinataire="<%= chat.recepteur._id  %>" attr-nom="<%= chat.recepteur.username  %>" attr-conversation="<%= chat._id  %>">
+                                    <img
+                                    src="<%= chat.recepteur.pic  %>"
+                                    alt="avatar"
+                                    />
+                                    <div class="about">
+                                    <div class="name">
+                                        <%= chat.recepteur.name  %>
+                                    </div>
+                                    </div>
+                                </li>
+                            <%  }else{ %>
+                                <li class="clearfix chatonglet <%= index == 0 ? 'active' : ''  %>" attr-onglet="<%= chat._id %>" attr-destinataire="<%= chat.emetteur._id  %>" attr-nom="<%= chat.emetteur.username  %>" attr-conversation="<%= chat._id  %>">
+                                    <img
+                                    src="<%= chat.emetteur.pic  %>"
+                                    alt="avatar"
+                                    />
+                                    <div class="about">
+                                    <div class="name">
+                                        <%= chat.emetteur.name  %>
+                                    </div>
+                                    </div>
+                                </li>
+                        <% } }) %> 
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+          <div class="card">
+            <% chatconvers.forEach((chat,index)=>{ %>
+              <div class="chat chat<%= chat._id %> ongletchat" style="display: <%= index == 0 ? '' : 'none'  %>;">
+                <div class="chat-header clearfix">
+                  <% 
+                      if(chat.emetteur._id == admin.toString()){ %>
+                    <img
+                      src="<%= chat.recepteur.pic  %>"
+                      alt="avatar"
+                    />
+                    <div class="chat-about">
+                      <div class="chat-with"><%= chat.recepteur.name  %></div>
+                    </div>
+                  <%  }else{ %>
+                    <img
+                      src="<%= chat.emetteur.pic  %>"
+                      alt="avatar"
+                    />
+                    <div class="chat-about">
+                      <div class="chat-with"><%= chat.emetteur.name  %></div>
+                    </div>
+                  <% } %> 
+                </div>
+                <div class="chat-history" id="chat-conversation">
+                  <ul style="height: 30rem;overflow: auto;">
+                    <% chat.messages.forEach((message,indexmessage)=>{ %>
+                      <% if(message.from == admin){ %>
+                        <li class="clearfix">
+                          <div class="message-data text-right">
+                            <span class="message-data-time"><%= moment(message.createdAt).fromNow() %></span>
+                            &nbsp; &nbsp;
+                            <span class="message-data-name">Vous</span>
+                          </div>
+                          <div class="message other-message float-right">
+                            <span style="font-weight: bold;color: black;">-- Objet: <%= message.objet %></span><br>
+                            <%= message.message %>
+                          </div>
+                        </li>
+                        <% if(message.file != "" && message.file != undefined){ %>
+                          <li>
+                            <div style="position: relative;display: flex;justify-content: flex-end;margin-bottom: 5rem;">
+                              <% if(message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "png" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "jpg" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "jpeg" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "webp" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "svg"){ %>
+                                <img src="<%= message.file %>" style="height: 10rem;width: 10rem;object-fit: contain;">
+                              <% }else{ %> 
+                                <a href="<%= message.file %>" target="_blank">Cliquer pour voir le fichier <i class="material-icons" style="font-size:15px;position: relative;top: 3px;">remove_red_eye</i></a>
+                              <% } %> 
+                            </div>
+                          </li>
+                        <% } %> 
+                      <% }else{ %> 
+                        <li>
+                          <div class="message-data">
+                            <% 
+                                if(chat.recepteur._id != admin.toString()){ if(chat.recepteur.type == "transporteur"){
+                            %>
+                              <span class="message-data-name"><%= chat.recepteur.name  %></span>
+                            <% }else{ %>
+                              <span class="message-data-name"><%= chat.recepteur.name  %></span>
+                            <%  }}else{ if(chat.emetteur.type == "transporteur"){ %>
+                              <span class="message-data-name"><%= chat.emetteur.name  %></span>
+                            <% }else{ %>
+                              <span class="message-data-name"><%= chat.emetteur.name  %></span>
+                            <% }} %> 
+                            <span class="message-data-time"><%= moment(moment(message.createdAt).format("YYYY-MM-DD HH:mm:ss")).fromNow() %></span>
+                          </div>
+                          <div class="message my-message">
+                            <p>
+                              <span style="font-weight: bold;color: black;">-- Objet: <%= message.objet %></span><br>
+                              <%= message.message %>
+                            </p>
+                            <div class="row"></div>
+                          </div>
+                        </li>
+                        <% if(message.file != "" && message.file != undefined){ %>
+                          <li>
+                            <div style="position: relative;display: flex;justify-content: flex-start;margin-bottom: 5rem;">
+                              <% if(message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "png" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "jpg" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "jpeg" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "webp" || message.file.split(".")[message.file.split(".").length-1].toLowerCase() == "svg"){ %>
+                                <img src="<%= message.file %>" style="height: 10rem;width: 10rem;object-fit: contain;">
+                              <% }else{ %> 
+                                <a href="<%= message.file %>" target="_blank">Cliquer pour voir le fichier <i class="material-icons" style="font-size:15px;position: relative;top: 3px;">remove_red_eye</i></a>
+                              <% } %> 
+                            </div>
+                          </li>
+                        <% } %> 
+                      <% } %> 
+                    <% }) %> 
+                  </ul>
+                </div>
+              </div>
+            <% }) %> 
+            <div class="chat-message clearfix" style="padding: 2rem;">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control objet_message"
+                      placeholder="Objet"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <textarea class="form-control text_message" placeholder="Ecrivez votre message ici..." style="margin-top: 0px;margin-bottom: 0px;height: 125px;padding: 10px !important;margin: 0px;width: 99.2% !important;"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-upload" style="position: relative;">
+                <div style="position: absolute;right: 2rem;top: 5px;display:none;">
+                  <input type="file" name="" id="attach_file" class="attach_file">
+                  <!-- <button
+                    type="button"
+                    class="btn btn-circle waves-effect waves-circle waves-float bg-deep-orange"
+                  >
+                    <i class="material-icons">attach_file</i>
+                  </button> -->
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-circle waves-effect waves-circle waves-float bg-dark send_msg"
+                  title="Envoyer"
+                >
+                  <i class="material-icons" style="color: white;">send</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<%- include('../partials/footer') -%> 

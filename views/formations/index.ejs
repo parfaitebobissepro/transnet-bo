@@ -1,0 +1,139 @@
+<%- include('../partials/header') -%> 
+<style>
+    .table thead tr th {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        /* width: 10rem !important; */
+    }
+    .statuu-ok{
+        margin: 0;
+        background: #33b689;
+        color: white;
+        padding: 2px;
+        border-radius: 20px;
+        text-align: center;
+    }
+    .statuu-ko{
+        margin: 0;
+        background: #f44336;
+        color: white;
+        padding: 2px;
+        border-radius: 20px;
+        text-align: center;
+    }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="margin-top: 4rem;">
+                    <div class="header">
+                        <h3 class="text-white mb-0" style="color: #000 !important;">Liste des Formations</h3>
+                        <h5 style="margin-top: 1rem;"><%= users.length %> Formation(s)</h5>
+                        <div class="header-dropdown m-r--5">
+                            <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5" onclick="window.location='/dashboard/formations/add'">Ajouter</button>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table  id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Domaine</th>
+                                        <th>Prix</th>
+                                        <th>Date limite</th>
+                                        <th>Candidatures</th>
+                                        <th>Crée par</th>
+                                        <th>Active</th>
+                                        <th>En vedette</th>
+                                        <th>Crée le</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach((user)=>{ %>
+                                    <tr>
+                                        <td><%= user.nom %></td>
+                                        <td><%= user.domaine.name %></td>
+                                        <td><%= user.cout %> €</td>
+                                        <td><%= user.date_limite %></td>
+                                        <td>
+                                            <a href="/dashboard/formation-candidatures/<%= user._id %>">
+                                                <% if(cand.filter( elt => elt.formation_id.toString() == user._id.toString() ).length > 0){ %>
+                                                    <p class="statuu-ok">
+                                                        <%= cand.filter( elt => elt.formation_id.toString() == user._id.toString() ).length %>
+                                                    </p>
+                                                <% }else{ %>
+                                                    <p class="statuu-ko">
+                                                        <%= cand.filter( elt => elt.formation_id.toString() == user._id.toString() ).length %>
+                                                    </p>
+                                                <% } %>
+                                            </a>
+                                        </td>
+                                        <td><%= user.user_id.name %></td>
+                                        <% if(user.active == "1") { %>
+                                          <td>
+                                            <div class="form-check form-check-radio">
+                                              <label>
+                                                  <input name="active" type="checkbox" class="filled-in active formation-activate" checked value="<%= user.id %>">
+                                                  <span class="yesorno">Oui</span>
+                                              </label>
+                                            </div>
+                                          </td>
+                                        <% }else{ %>
+                                          <td>
+                                            <div class="form-check form-check-radio">
+                                              <label>
+                                                  <input name="active" type="checkbox" class="filled-in active formation-activate" value="<%= user.id %>">
+                                                  <span class="yesorno">Non</span>
+                                              </label>
+                                            </div>
+                                          </td>
+                                        <% } %>
+                                        <% if(user.en_vedette == "on") { %>
+                                          <td>
+                                            <div class="form-check form-check-radio">
+                                              <label>
+                                                  <input name="active" type="checkbox" class="filled-in active" checked disabled>
+                                                  <span class="yesorno">Oui</span>
+                                              </label>
+                                            </div>
+                                          </td>
+                                        <% }else{ %>
+                                          <td>
+                                            <div class="form-check form-check-radio">
+                                              <label>
+                                                  <input name="active" type="checkbox" class="filled-in active" disabled>
+                                                  <span class="yesorno">Non</span>
+                                              </label>
+                                            </div>
+                                          </td>
+                                        <% } %>
+                                        <td><%= user.createdAt.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ") %></td>
+                                        <td>
+                                            <!-- <a href="/user/details/<%= user.id %>" class="btn-hover btn-border-radius color-4 p-1"><i class="fa fa-eye"></i> View</a>
+                                            <a href="/edit/<%= user.id %>" class="btn-hover btn-border-radius color-6 p-3"><i class="fa fa-edit"></i> edit</a> -->
+                                            <!-- <a href="#" class="btn btn-tbl-edit btn-primary delete_formation" attr-id="<%= user.id %>" title="Supprimer">
+                                                <i class="material-icons">delete_sweep</i>
+                                            </a> -->
+                                            <a href="/dashboard/formations/edit/<%= user.id %>" class="btn btn-tbl-edit" title="Modifier">
+                                                <i class="material-icons">create</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% }) %> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
+
+<%- include('../partials/footer') -%> 

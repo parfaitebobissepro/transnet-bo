@@ -1,0 +1,54 @@
+<%- include('../partials/header') -%> 
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="margin-top: 4rem;">
+                    <div class="header">
+                        <h3 class="text-white mb-0" style="color: #000 !important;">Liste des demandes de contact</h3>
+                        <h5 style="margin-top: 1rem;"><%= users.length %> demande(s) de contact</h5>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table  id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Pays</th>
+                                        <th>Téléphone</th>
+                                        <th>Whatsapp</th>
+                                        <th>Sujet</th>
+                                        <th>Email</th>
+                                        <th>Message</th>
+                                        <th>Envoyée le</th>
+                                        <!-- <th>Actions</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach((user)=>{ %>
+                                    <tr>
+                                        <td><%= user.name %></td>
+                                        <td><%= user.prenom %></td>
+                                        <td><%= user.pays %></td>
+                                        <td><%= user.tel %></td>
+                                        <td><%= user.contact_wha %></td>
+                                        <td><%= user.subject %></td>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.message %></td>
+                                        <td><%= user.createdAt.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ") %></td>
+                                    </tr>
+                                    <% }) %> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
+
+<%- include('../partials/footer') -%> 

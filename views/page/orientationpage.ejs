@@ -1,0 +1,186 @@
+<%- include('../partials/header') -%> 
+<style>
+    .avatarimg{
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        object-fit: cover;
+    }
+    .addavis {
+        background-image: linear-gradient(to right, #212529, #212529, #03a9f3, #212529);
+        -webkit-box-shadow: 0 4px 15px 0 rgb(252 104 110 / 75%);
+        -moz-box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+        -ms-box-shadow: 0 4px 15px 0 rgba(252, 104, 110, 0.75);
+        box-shadow: 0 0px 5px 0 #212529;
+    }
+    .tab-all a.active {
+        background-color: #4068a3 !important;
+        box-shadow: 0 5px 20px 0 rgb(0 0 0 / 20%), 0 13px 24px -11px rgb(120 174 97);
+        color: #ffffff !important;
+        border-radius: 30px;
+        height: 35px;
+    }
+    .avissave{
+        width: 100%;
+    }
+    input[type=text], input[type=email]{
+      border: 1px solid #0f3042 !important;
+      border-radius: 5px !important;
+      background: transparent !important;
+      padding: 0px 7px !important;
+    }
+    input[type=text]:focus, input[type=email]:focus{
+      border: 1px solid #78ae61 !important;
+      -webkit-box-shadow: 0 1px 0 0 #78ae61 !important;
+      box-shadow: 0 1px 0 0 #78ae61 !important;
+    }
+    .form-group .form-control{
+        width: 97% !important;
+    }
+    .eleve_form, .ecole_form{
+        display: none;
+        margin-top: 1rem;
+    }
+    .usertype_selector h3{
+        text-align: center;
+    }
+    .usertype_selector{
+        border: 1px #4169a3 solid;
+        color: black;
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        border-radius: 15px;
+    }
+    .usertype_selector.active{
+        border: 1px #4169a3 solid;
+        color: white;
+        background-color: #4169a3;
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        border-radius: 15px;
+    }
+    .usertype_selector:hover{
+        border: 1px #4169a3 solid;
+        color: white;
+        background-color: #4169a3;
+        -webkit-transition: background-color 400ms linear;
+        -ms-transition: background-color 400ms linear;
+        transition: background-color 400ms linear;
+        width: 48%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    .divselectorentoure{
+        padding: 1rem;
+    }
+    .addinguser hr{
+        width: 100%;
+        margin-bottom: 2rem;
+        border-top: 2px solid rgb(64 104 163);
+    }
+    .ms-choice>span {
+        position: absolute;
+        top: 0px;
+    }
+    .languesa{
+        padding: 0;
+    }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12" style="margin-top: 4rem;">
+                    <div class="card">
+                        <div class="profile-tab-box">
+                            <div class="p-l-20">
+                                <ul class="nav ">
+                                    <li class="nav-item tab-all">
+                                        <a class="nav-link active show" href="#avis" data-toggle="tab">Nos conseils & orientations</a>
+                                    </li>
+                                    <!-- <li class="nav-item tab-all p-l-20">
+                                        <a class="nav-link" href="#usersettings" data-toggle="tab">Slides</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="avis" aria-expanded="true">
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="card project_widget">
+                                        <div class="header">
+                                            <h2 class="mb-0">
+                                                <strong>Nos conseils & orientations</strong>
+                                            </h2>
+                                            <div class="header-dropdown m-r--5">
+                                                <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5" data-toggle="modal" data-target="#exampleModalCenterOrientation">Ajouter</button>
+                                            </div>
+                                        </div>
+                                        <div class="body">
+                                            <table  id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100" style="width: 100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Image</th>
+                                                        <th>Titre bloc 1</th>
+                                                        <th>Titre bloc 1 (en anglais)</th>
+                                                        <th>Crée le</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% orientations.forEach((orientation)=>{ %>
+                                                        <tr>
+                                                            <td>
+                                                                <img width="25" src="<%= orientation.image_banner %>" alt="<%= orientation.titre_bloc1 %>" class="avatarimg">
+                                                            </td>
+                                                            <td><%= orientation.titre_bloc1 %></td>
+                                                            <td><%= orientation.titre_bloc1_en %></td>
+                                                            <td><%= orientation.createdAt.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ") %></td>
+                                                            <td>
+                                                                <a href="#" data-toggle="modal" data-target="#exampleModalCenterOrientation<%= orientation.id %>" class="btn btn-tbl-edit" title="Modifier">
+                                                                    <i class="material-icons">create</i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <%-include('../partials/orientation_form_edit',{orientation:orientation})-%> 
+                                                    <% }) %> 
+                                                </tbody>
+                                            </table>
+                                            <%-include('../partials/orientation_form_add')-%> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div role="tabpanel" class="tab-pane" id="usersettings" aria-expanded="false">
+                            <div class="card">
+                                <div class="header">
+                                    <h2>
+                                        <strong>Slides</strong> Settings</h2>
+                                </div>
+                                <div class="body">
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
+
+<%- include('../partials/footer') -%> 

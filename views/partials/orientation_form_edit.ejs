@@ -1,0 +1,351 @@
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenterOrientation<%= orientation._id %>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Editer Page Nos conseils & orientations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="orientationsave">
+                    <input type="hidden" name="id_orientation" value="<%= orientation._id %>">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Bannière et Bloc 1</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image bannière *</label>
+                                <input type="file" class="form-control" name="image_banner"><br>
+                                <img src="<%= orientation.image_banner %>" alt="<%= orientation.titre_bloc1 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre bloc 1 *</label>
+                                <input type="text" class="form-control" name="titre_bloc1" value="<%= orientation.titre_bloc1 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre bloc 1 (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc1_en" value="<%= orientation.titre_bloc1_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Sous-titre bloc 1 *</label>
+                                <input type="text" class="form-control" name="soustitre_bloc1" value="<%= orientation.soustitre_bloc1 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Sous-titre bloc 1 (en anglais) *</label>
+                                <input type="text" class="form-control" name="soustitre_bloc1_en" value="<%= orientation.soustitre_bloc1_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image bloc 1 *</label>
+                                <input type="file" class="form-control" name="image_bloc1"><br>
+                                <img src="<%= orientation.image_bloc1 %>" alt="<%= orientation.titre_bloc1 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description bloc 1 *</label>
+                                <textarea id="desc_bloc1_edit" class="form-control"><%= orientation.desc_bloc1 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description bloc 1 (en anglais) *</label>
+                                <textarea id="desc_bloc1_edit_en" class="form-control"><%= orientation.desc_bloc1_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 2</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc2" value="<%= orientation.titre_bloc2 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc2_en" value="<%= orientation.titre_bloc2_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc2"><br>
+                                <img src="<%= orientation.image_bloc2 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc2_edit" class="form-control"><%= orientation.desc_bloc2 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc2_edit_en" class="form-control"><%= orientation.desc_bloc2_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 3</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc3" value="<%= orientation.titre_bloc3 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc3_en" value="<%= orientation.titre_bloc3_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc3"><br>
+                                <img src="<%= orientation.image_bloc3 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc3_edit" class="form-control"><%= orientation.desc_bloc3 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc3_edit_en" class="form-control"><%= orientation.desc_bloc3_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 4</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc4" value="<%= orientation.titre_bloc4 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_en" value="<%= orientation.titre_bloc4_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc4"><br>
+                                <img src="<%= orientation.image_bloc4 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc4_edit" class="form-control"><%= orientation.desc_bloc4 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc4_edit_en" class="form-control"><%= orientation.desc_bloc4_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 5</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc5" value="<%= orientation.titre_bloc5 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc5_en" value="<%= orientation.titre_bloc5_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc5"><br>
+                                <img src="<%= orientation.image_bloc5 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc5_edit" class="form-control"><%= orientation.desc_bloc5 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc5_edit_en" class="form-control"><%= orientation.desc_bloc5_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 6</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc6" value="<%= orientation.titre_bloc6 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc6_en" value="<%= orientation.titre_bloc6_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc6"><br>
+                                <img src="<%= orientation.image_bloc6 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc6_edit" class="form-control"><%= orientation.desc_bloc6 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc6_edit_en" class="form-control"><%= orientation.desc_bloc6_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 7</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc7" value="<%= orientation.titre_bloc7 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc7_en" value="<%= orientation.titre_bloc7_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc7"><br>
+                                <img src="<%= orientation.image_bloc7 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc7_edit" class="form-control"><%= orientation.desc_bloc7 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc7_edit_en" class="form-control"><%= orientation.desc_bloc7_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 8</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc8" value="<%= orientation.titre_bloc8 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc8_en" value="<%= orientation.titre_bloc8_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc8"><br>
+                                <img src="<%= orientation.image_bloc8 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc8_edit" class="form-control"><%= orientation.desc_bloc8 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc8_edit_en" class="form-control"><%= orientation.desc_bloc8_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 9</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc9" value="<%= orientation.titre_bloc9 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc9_en" value="<%= orientation.titre_bloc9_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image_bloc9"><br>
+                                <img src="<%= orientation.image_bloc9 %>" style="width: 10rem;object-fit: cover;">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc9_edit" class="form-control"><%= orientation.desc_bloc9 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc9_edit_en" class="form-control"><%= orientation.desc_bloc9_en %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-hover btn-border-radius addavis" data-dismiss="modal"
+                    style="margin-top: 3px;">Fermer</button>
+                <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5 save_orientation" attr-type="save"
+                    attr-unit="description_avis0">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>

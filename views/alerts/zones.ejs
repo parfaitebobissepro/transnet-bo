@@ -1,0 +1,37 @@
+<%- include('../partials/header') -%> 
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style">
+                        <li class="breadcrumb-item 	bcrumb-1">
+                            <a href="/dashboard">
+                                <i class="material-icons">home</i>
+                                Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Zones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h1>Les zones les plus alertées par les utilisateurs</h1>
+        <div class="row">
+            <% alerts.forEach((alert)=>{ %>
+            <div class="col-lg-3 col-sm-6">
+                <div class="info-box7 l-bg-cyan order-info-box7">
+                    <div class="info-box7-block">
+                        <h4 class="m-b-20"><%= alert._id ? alert._id : 'Aucune Adress' %></h4>
+                        <h2 class="text-right"><i class=" pull-left">Alertes</i><span><%= alert.total ? alert.total : 'Aucun totla' %></span></h2>
+                        <p class="m-b-0">10% Higher Then Last Month</p>
+                    </div>
+                </div>
+            </div>
+            <% }) %> 
+        </div>
+
+    </div>
+</section>
+
+<%- include('../partials/footer') -%> 

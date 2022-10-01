@@ -1,0 +1,98 @@
+<%- include('../partials/header') -%> 
+<style>
+    .avatarimg{
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        object-fit: cover;
+    }
+    div.dataTables_scrollBody table tbody tr:first-child th, div.dataTables_scrollBody table tbody tr:first-child td {
+        border-top: 0;
+        text-align: center;
+    }
+    .table thead tr th {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+    }
+</style>
+<section class="content">
+    <div class="container-fluid">
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="margin-top: 4rem;">
+                    <div class="header">
+                        <h3 class="text-white mb-0" style="color: #000 !important;">Liste des articles</h3>
+                        <h5 style="margin-top: 1rem;"><%= users.length %> Article(s)</h5>
+                        <div class="header-dropdown m-r--5">
+                            <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5" onclick="window.location='/dashboard/blog/add'">Ajouter</button>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table  id="tableExport" class="display table table-hover table-checkable order-column m-t-20 width-per-100" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Titre</th>
+                                        <th>Titre (en anglais)</th>
+                                        <th>Type</th>
+                                        <th>Statut</th>
+                                        <th>Crée le</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% users.forEach((user)=>{ %>
+                                    <tr>
+                                        <td>
+                                            <img width="25" src="<%= user.image %>" alt="<%= user.title %>" class="avatarimg">
+                                        </td>
+                                        <td><%= user.title %></td>
+                                        <td><%= user.title_en %></td>
+                                        <td><%= user.type %></td>
+                                        <% if(user.status == "1") { %>
+                                          <td>
+                                            <div class="form-check form-check-radio">
+                                              <label>
+                                                  <input name="active" type="checkbox" class="filled-in active blog-activate" checked value="<%= user.id %>">
+                                                  <span class="yesorno">Publié</span>
+                                              </label>
+                                            </div>
+                                          </td>
+                                        <% }else{ %>
+                                          <td>
+                                            <div class="form-check form-check-radio">
+                                              <label>
+                                                  <input name="active" type="checkbox" class="filled-in active blog-activate" value="<%= user.id %>">
+                                                  <span class="yesorno">Non publié</span>
+                                              </label>
+                                            </div>
+                                          </td>
+                                        <% } %>
+                                        <td><%= user.createdAt.toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ") %></td>
+                                        <td>
+                                            <!-- <a href="/user/details/<%= user.id %>" class="btn-hover btn-border-radius color-4 p-1"><i class="fa fa-eye"></i> View</a>
+                                            <a href="/edit/<%= user.id %>" class="btn-hover btn-border-radius color-6 p-3"><i class="fa fa-edit"></i> edit</a> -->
+                                            <a href="#" class="btn btn-tbl-edit btn-primary delete_blog" attr-id="<%= user.id %>" title="Supprimer">
+                                                <i class="material-icons">delete_sweep</i>
+                                            </a>
+                                            <a href="/dashboard/blog/edit/<%= user.id %>" class="btn btn-tbl-edit" title="Modifier">
+                                                <i class="material-icons">create</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% }) %> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Exportable Table -->
+    </div>
+</section>
+
+<%- include('../partials/footer') -%> 

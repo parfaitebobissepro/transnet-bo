@@ -1,0 +1,182 @@
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenterSection<%= autresection._id %>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Editer les autres sections</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="autresectionsave">
+                    <input type="hidden" name="id_autresection" value="<%= autresection._id %>">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Bloc 2</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc2" value="<%= autresection.titre_bloc2 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc2_en" value="<%= autresection.titre_bloc2_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc2_edit" class="form-control"><%= autresection.desc_bloc2 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc2_edit_en" class="form-control"><%= autresection.desc_bloc2_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 3</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc3" value="<%= autresection.titre_bloc3 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc3_en" value="<%= autresection.titre_bloc3_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc3_edit" class="form-control"><%= autresection.desc_bloc3 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais)  *</label>
+                                <textarea id="desc_bloc3_edit_en" class="form-control"><%= autresection.desc_bloc3_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 4</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" name="titre_bloc4" value="<%= autresection.titre_bloc4 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_en" value="<%= autresection.titre_bloc4_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <textarea id="desc_bloc4_edit" class="form-control"><%= autresection.desc_bloc4 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <textarea id="desc_bloc4_edit_en" class="form-control"><%= autresection.desc_bloc4_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Bloc 4 - Card</h3>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre card 1 *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_card1" value="<%= autresection.titre_bloc4_card1 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre card 1 (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_card1_en" value="<%= autresection.titre_bloc4_card1_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description card 1 *</label>
+                                <textarea id="desc_bloc4_card1_edit" class="form-control"><%= autresection.desc_bloc4_card1 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description card 1 (en anglais) *</label>
+                                <textarea id="desc_bloc4_card1_edit_en" class="form-control"><%= autresection.desc_bloc4_card1_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre card 2 *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_card2" value="<%= autresection.titre_bloc4_card2 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre card 2 (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_card2_en" value="<%= autresection.titre_bloc4_card2_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description card 2 *</label>
+                                <textarea id="desc_bloc4_card2_edit" class="form-control"><%= autresection.desc_bloc4_card2 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description card 2 (en anglais) *</label>
+                                <textarea id="desc_bloc4_card2_edit_en" class="form-control"><%= autresection.desc_bloc4_card2_en %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre card 3 *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_card3" value="<%= autresection.titre_bloc4_card3 %>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre card 3 (en anglais) *</label>
+                                <input type="text" class="form-control" name="titre_bloc4_card3_en" value="<%= autresection.titre_bloc4_card3_en %>">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description card 3 *</label>
+                                <textarea id="desc_bloc4_card3_edit" class="form-control"><%= autresection.desc_bloc4_card3 %></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Description card 3 (en anglais) *</label>
+                                <textarea id="desc_bloc4_card3_edit_en" class="form-control"><%= autresection.desc_bloc4_card3_en %></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-hover btn-border-radius addavis" data-dismiss="modal"
+                    style="margin-top: 3px;">Fermer</button>
+                <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5 save_autresection" attr-type="save"
+                    attr-unit="description_avis0">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>

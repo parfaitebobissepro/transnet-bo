@@ -1,0 +1,56 @@
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenterSlide" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Editer un slide</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="slidesave">
+                    <input type="hidden" name="id_slide" value="no">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre *</label>
+                                <input type="text" class="form-control" placeholder="Titre" name="titre">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Titre (en anglais) *</label>
+                                <input type="text" class="form-control" placeholder="Titre" name="titre_en">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Description *</label>
+                                <input type="text" class="form-control" placeholder="Description" name="desc">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Description (en anglais) *</label>
+                                <input type="text" class="form-control" placeholder="Description" name="desc_en">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Image *</label>
+                                <input type="file" class="form-control" name="image">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-hover btn-border-radius addavis" data-dismiss="modal"
+                    style="margin-top: 3px;">Fermer</button>
+                <button style="margin-top:0px;" class="btn-hover btn-border-radius color-5 save_slide" attr-type="save"
+                    attr-unit="description_avis0">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
