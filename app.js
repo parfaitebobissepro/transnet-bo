@@ -50,7 +50,7 @@ const User = require('./models/userModel')
 
 dotenv.config({path: './config.env'})
 
-mongoose.connect('mongodb+srv://DrThug:Transnet_1999@transnetcluster.ymhql.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://DrThug:Test_1234@cluster0.9qxlxwc.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser : true,
     useUnifiedTopology : true,
     useCreateIndex : true
